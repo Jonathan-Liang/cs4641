@@ -13,7 +13,7 @@ def indices_of_k(arr, k):
     an array of all of the indices where the value equals k.
     Hint: You may need to index into the output of np.argwhere.
     """
-    raise NotImplementedError
+    return np.where(arr == k)[0]
 
 
 def argmax_1d(arr):
@@ -27,7 +27,7 @@ def argmax_1d(arr):
     the largest value in the array. If there are duplicate largest values, return the
     first index encountered
     """
-    raise NotImplementedError
+    return int(np.argmax(arr))
 
 
 def mean_rows(arr):
@@ -40,7 +40,7 @@ def mean_rows(arr):
     Given a two dimensional array, use np.mean and the axis parameter to calculate
     the mean of each row.
     """
-    raise NotImplementedError
+    return np.mean(arr, axis=1)
 
 
 def sum_squares(arr):
@@ -64,7 +64,7 @@ def sum_squares(arr):
      [12],
      [27]]
     """
-    raise NotImplementedError
+    return np.sum(np.square(arr), axis=1, keepdims=True)
 
 
 def fast_manhattan(x, y):
@@ -76,4 +76,8 @@ def fast_manhattan(x, y):
         dist: N x M numpy array, where dist[i, j] is the Manhattan distance between
         x[i, :] and y[j, :]
     """
-    raise NotImplementedError
+
+    x_expanded = x[:, None, :]
+    y_expanded = y[None, :, :]
+    diff = np.abs(x_expanded - y_expanded)  
+    return np.sum(diff, axis=2)
